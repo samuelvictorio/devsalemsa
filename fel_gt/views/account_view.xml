@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record model="ir.ui.view" id="invoice_form_fel_gt">
+            <field name="name">account.move.form.fel_gt</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="l10n_gt_extra.l10n_gt_view_move_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="narration" position="before">
+                        <group>
+                            <group>
+                                <field name="firma_fel"/>
+                                <field name="serie_fel"/>
+                                <field name="numero_fel"/>
+                                <field name="factura_original_id"/>
+                            </group>
+                            <group>
+                                <field name="documento_xml_fel_name" invisible="1"/>
+                                <field name="documento_xml_fel" readonly="1" filename="documento_xml_fel_name"/>
+                                <field name="resultado_xml_fel_name" invisible="1"/>
+                                <field name="resultado_xml_fel" readonly="1" filename="resultado_xml_fel_name"/>
+                            </group>
+                        </group>
+                    </field>
+                    <field name="tipo_gasto" position="after">
+                        <field name="frase_exento_fel"/>
+                        <field name="motivo_fel"/>
+                        <field name="consignatario_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
+                        <field name="comprador_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
+                        <field name="exportador_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
+                        <field name="incoterm_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="journal_form_fel_gt">
+            <field name="name">account.journal.form.fel_gt</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="l10n_gt_extra.l10n_gt_view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <group name="extra" position="inside">
+                        <group string="FEL">
+                            <field name="generar_fel"/>
+                            <field name="tipo_documento_fel"/>
+                            <field name="error_en_historial_fel"/>
+                            <field name="contingencia_fel"/>
+                        </group>
+                    </group>
+                </data>
+            </field>
+        </record>
+        
+        <record id="view_company_form_fel_gt" model="ir.ui.view">
+            <field name="name">res.company.form.fel_gt</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <notebook position="inside">
+                        <page string="Extra">
+                            <group string="FEL">
+                                <group>
+                                    <field name="afiliacion_iva_fel"/>
+                                    <field name="frases_fel"/>
+                                    <field name="adenda_fel"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </data>
+            </field>
+        </record>
+        
+    </data>
+</openerp>
